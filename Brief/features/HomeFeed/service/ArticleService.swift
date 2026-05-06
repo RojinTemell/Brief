@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Observation
 
 final class ArticleService {
     static  let shared = ArticleService()
@@ -80,6 +81,7 @@ final class ArticleService {
         do{
             let decoder = JSONDecoder()
             let result = try decoder.decode(NewsResponse.self, from: data)
+            return result.articles
 
         }catch{
             throw AppError.InvalidData

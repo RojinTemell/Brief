@@ -9,18 +9,37 @@ import SwiftUI
 
 struct HomeFeed: View {
     var body: some View {
-        HStack(spacing: 12) {
-            Color.secondary.opacity(0.3)
-                .frame(height: 1)
-            Text("TODAY")
-                .font(.caption)
-                .fontWeight(.semibold)
-                .foregroundStyle(.secondary)
-                .fixedSize()
-            Color.secondary.opacity(0.3)
-                .frame(height: 1)
+        VStack(spacing: 12) {
+            Image("topNew")
+                .resizable()
+                .frame(maxWidth: .infinity)
+                .frame(height: 180)
+                .aspectRatio(contentMode: .fill)
+                .clipped()
+                .clipShape(
+                    .rect(
+                        topLeadingRadius: 16,
+                        bottomLeadingRadius: 0,
+                        bottomTrailingRadius: 0,
+                        topTrailingRadius: 16
+                    )
+                )
+            HStack{
+                Text("GLOBAL ECONOMICS")
+                Image(systemName: "smallcircle.filled.circle.fill")
+                Text("12 Min Read")
+            }
+            Text("The Future of Decentralized Finance in Emerging Markets")
+
+            Text("An in-depth exploration of how digital currencies are reshaping the financial…")
+            HStack{
+                Text("The Daily Journal")
+               Spacer()
+                Image(systemName: "bookmark")
+            }.frame(maxWidth: .infinity, alignment: .leading)
         }
-        .padding(.vertical,8)
+        .frame(maxWidth: .infinity)
+        .padding(.all,25)
     }
 }
 
