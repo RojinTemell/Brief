@@ -14,13 +14,13 @@ struct TabWidget: View {
         Text(text)
             .padding()
             .bold()
-            .foregroundColor(isActive ?.background :.caption)
+            .foregroundColor(isActive ?AppColor.backgroundPrimary:AppColor.backgroundSecondary)
             .frame(height: 50)
-            .background(isActive ? Color(.active):  Color(.card))
+            .background(isActive ? AppColor.accentPrimary: AppColor.accentSecondary )
             .cornerRadius(24)
             .overlay(
                 RoundedRectangle(cornerRadius: 24)
-                    .stroke(isActive ? .clear :Color(.divider),lineWidth: 1 )
+                    .stroke(isActive ? .clear :AppColor.borderDefault,lineWidth: 1 )
             )
     }
 }

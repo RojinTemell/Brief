@@ -8,38 +8,28 @@
 import SwiftUI
 
 struct HomeFeed: View {
-    var body: some View {
-        VStack(spacing: 12) {
-            Image("topNew")
-                .resizable()
-                .frame(maxWidth: .infinity)
-                .frame(height: 180)
-                .aspectRatio(contentMode: .fill)
-                .clipped()
-                .clipShape(
-                    .rect(
-                        topLeadingRadius: 16,
-                        bottomLeadingRadius: 0,
-                        bottomTrailingRadius: 0,
-                        topTrailingRadius: 16
-                    )
-                )
-            HStack{
-                Text("GLOBAL ECONOMICS")
-                Image(systemName: "smallcircle.filled.circle.fill")
-                Text("12 Min Read")
-            }
-            Text("The Future of Decentralized Finance in Emerging Markets")
 
-            Text("An in-depth exploration of how digital currencies are reshaping the financial…")
-            HStack{
-                Text("The Daily Journal")
-               Spacer()
-                Image(systemName: "bookmark")
-            }.frame(maxWidth: .infinity, alignment: .leading)
+    var body: some View {
+        ScrollView{
+            VStack{
+                ArticleTopView()
+                Spacer().frame(height: 24)
+                ScrollView{
+                    HStack{
+                        ForEach(CategoryList.mockCatgory, id: \.self){ item in
+                            CategoryChip(title: item.title,
+                                         action: { },
+                                         isSelected: item.isSelected
+                            )
+
+                        }
+                    }
+                }
+            }
+
         }
-        .frame(maxWidth: .infinity)
-        .padding(.all,25)
+
+
     }
 }
 
