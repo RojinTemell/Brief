@@ -25,6 +25,18 @@ struct HomeFeed: View {
                         }
                     }
                 }
+                ScrollView{
+                    VStack{
+                        ForEach(0...3, id: \.self){ _ in
+                            ArticleItemView()
+
+                        }
+                    }
+                }.padding(.all,20)
+
+
+
+
             }
 
         }
