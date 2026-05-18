@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ArticleItemView: View {
+    let article:Article
     var body: some View {
         VStack(alignment:.leading,spacing: 12){
             HStack(){
@@ -15,7 +16,7 @@ struct ArticleItemView: View {
                     Text("Climate")
                         .bold()
                         .font(AppTypography.subheadline)
-                    Text("4h ago")
+                    Text(article.publishedAt.timeAgo())
                         .font(AppTypography.caption)
                 }
                 .foregroundColor(AppColor.textSecondary)
@@ -24,30 +25,42 @@ struct ArticleItemView: View {
             }
             HStack{
                 VStack(alignment: .leading,spacing: 8){
-                    Text("New architectural standards for flood-resistant cities.")
+                    Text(article.title)
                         .font(AppTypography.title2)
+                        .fontWeight(.bold)
+                        .lineLimit(1)
+                    Text(article.description)
+                        .font(AppTypography.title3)
                         .fontWeight(.light)
-                    Text("Urban Review")
+                        .lineLimit(2)
+                    Text(article.source.name)
                         .foregroundColor(AppColor.textSecondary)
                         .font(AppTypography.subheadline)
                 }
-                Spacer()
-                Image("topNew")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 90,height: 90)
-                    .clipped()
-                    .cornerRadius(16)
 
+                Spacer()
+                AsyncImage(url: URL(string: article.image)) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 100,height: 100)
+                        .clipped()
+                        .cornerRadius(16)
+                } placeholder: {
+                    ProgressView()
+                }
+
+                .clipped()
+                .cornerRadius(16)
             }
 
         }
-//        .background(AppColor.backgroundSecondary)
+//       .background(AppColor.backgroundSecondary)
         .padding(.vertical,16)
 
     }
 }
 
 #Preview {
-    ArticleItemView()
+    ArticleItemView(article: ArticleList.mockArticle[0])
 }

@@ -12,9 +12,9 @@ final class ArticleService {
     static  let shared = ArticleService()
     func getTopHeadlines()async throws ->[Article]{
         guard let url = AppServiceUrl.topHeadlines(country: "tr",lang:"tr").url else {
+
             throw AppError.InvalidUrl
         }
-
         let (data, response) = try await URLSession.shared.data(for:URLRequest(url: url))
 
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
@@ -26,6 +26,7 @@ final class ArticleService {
             let result = try decoder.decode(NewsResponse.self, from: data)
             return result.articles
         }catch {
+            print("Decode error: \(error)")
             throw AppError.InvalidData
         }
     }
@@ -53,6 +54,7 @@ final class ArticleService {
         guard let url = AppServiceUrl.category(type: type).url else{
             throw  AppError.InvalidUrl
         }
+     print(url)
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url:url))
 
         guard let httpResponse = response as? HTTPURLResponse , httpResponse.statusCode == 200 else {

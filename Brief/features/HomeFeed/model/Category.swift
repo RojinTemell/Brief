@@ -16,8 +16,14 @@ struct Category : Hashable ,Identifiable {
 
 struct CategoryList {
     static let mockCatgory = [
-        Category(title: "For You", isSelected: true),
-        Category(title: "Politics", isSelected: false),
-        Category(title: "Technology", isSelected: false)
+        Category(title: "General", isSelected: true),
+        Category(title: "Health", isSelected: false),
+        Category(title: "Technology", isSelected: false),
+        Category(title: "Word", isSelected: false),
+        Category(title: "Nation", isSelected: false),
+        Category(title: "Business", isSelected: false),
+        Category(title: "Entertainment", isSelected: false),
+        Category(title: "Sports", isSelected: false),
+        Category(title: "Science", isSelected: false),
     ]
 }

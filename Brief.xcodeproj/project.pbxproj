@@ -8,6 +8,7 @@
 
 /* Begin PBXFileReference section */
 		18F003DC2F974BDC0000993D /* Brief.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brief.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18F003EA2F974BDE0000993D /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; name = Config.xcconfig; path = Brief/Config.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -45,6 +46,7 @@
 		18F003D32F974BDC0000993D = {
 			isa = PBXGroup;
 			children = (
+				18F003EA2F974BDE0000993D /* Config.xcconfig */,
 				18F003DE2F974BDC0000993D /* Brief */,
 				18F003DD2F974BDC0000993D /* Products */,
 			);
@@ -140,6 +142,7 @@
 /* Begin XCBuildConfiguration section */
 		18F003E52F974BDE0000993D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18F003EA2F974BDE0000993D /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -203,6 +206,7 @@
 		};
 		18F003E62F974BDE0000993D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 18F003EA2F974BDE0000993D /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;

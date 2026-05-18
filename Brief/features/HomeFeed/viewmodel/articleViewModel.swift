@@ -11,11 +11,22 @@ import Observation
 @Observable
 final class ArticleViewModel {
     var articles :[Article] = []
+    var selectedCategory:String = "General"
+    
 
     func getTopHeadlines() async{
         do{
             articles = try await ArticleService.shared.getTopHeadlines()
-            print(articles.count)
+
+        }
+        catch{
+            print(error)
+        }
+    }
+    func category(category:String) async{
+        do{
+            articles = try await ArticleService.shared.category(type:category.lowercased())
+            selectedCategory = category
         }
         catch{
             print(error)

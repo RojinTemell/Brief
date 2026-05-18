@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct CategoryChip: View {
-    let title :String
-    let action: () -> Void
-    let isSelected:Bool
+    let category :Category
+    let action: ()  async -> Void
+    @Binding var selectedCategory: String
+    var isSelected: Bool {
+        selectedCategory == category.title
+    }
+
     var body: some View {
-        Button(action: action) {
-            Text(title)
+        Button{
+            Task {
+                await action()
+            }
+        }label: {
+            Text(category.title)
                 .foregroundColor(isSelected ? AppColor.textInverse:AppColor.textTertiary)
                 .bold()
                 .padding(.horizontal,18)
@@ -26,5 +34,5 @@ struct CategoryChip: View {
 }
 
 #Preview {
-    CategoryChip(title: "For You", action: {},isSelected: false)
+    CategoryChip(category: CategoryList.mockCatgory[0], action: {},selectedCategory: .constant("General"))
 }
