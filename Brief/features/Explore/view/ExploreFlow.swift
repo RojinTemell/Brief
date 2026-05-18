@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ExploreFlow: View {
-    @State private var router = AppRouter()
+    @Environment(AppRouter.self) private var router
     var body: some View {
+        @Bindable var router = router
         NavigationStack(path: $router.explore){
             Explore()
         }.tabItem(){
@@ -20,5 +21,5 @@ struct ExploreFlow: View {
 }
 
 #Preview {
-    ExploreFlow()
+    ExploreFlow().environment(AppRouter())
 }

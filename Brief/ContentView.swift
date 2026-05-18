@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var app = AppRouter()
+    @Environment(AppRouter.self) private var app
     var body: some View {
+        @Bindable var app = app
         TabView(selection: $app.selectedTab) {
             HomeFlow()
             ExploreFlow()
@@ -20,5 +21,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView().environment(AppRouter())
 }

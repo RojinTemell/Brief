@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct BookmarkFlow: View {
-    @State private var router = AppRouter()
+    @Environment(AppRouter.self) private var router
     var body: some View {
+        @Bindable var router = router
         NavigationStack(path: $router.bookmark){
             Bookmark()
         }
@@ -21,5 +22,5 @@ struct BookmarkFlow: View {
 }
 
 #Preview {
-    BookmarkFlow()
+    BookmarkFlow().environment(AppRouter())
 }

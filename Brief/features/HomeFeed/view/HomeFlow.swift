@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct HomeFlow: View {
-    @State private var router = AppRouter()
-    
+    @Environment(AppRouter.self) private var router
+
     var body: some View {
+        @Bindable var router = router
         NavigationStack(path: $router.home){
             HomeFeed()
-//                .navigationDestination(for: HomeRoute.self){
-//
-//                }
+                .navigationDestination(for: HomeRoute.self){ route in
+                    switch route{
+                    case .detail(let article):
+                        ArticleDetail(article: article)
+                    }
+                }
         }
         .tabItem{ Label("Home",systemImage: "house")}
         .tag(AppTab.home)
@@ -24,5 +28,5 @@ struct HomeFlow: View {
 }
 
 #Preview {
-    HomeFlow()
+    HomeFlow().environment(AppRouter())
 }

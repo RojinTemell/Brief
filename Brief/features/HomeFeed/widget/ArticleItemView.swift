@@ -39,23 +39,10 @@ struct ArticleItemView: View {
                 }
 
                 Spacer()
-                AsyncImage(url: URL(string: article.image)) { image in
-                    image
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 100,height: 100)
-                        .clipped()
-                        .cornerRadius(16)
-                } placeholder: {
-                    ProgressView()
-                }
-
-                .clipped()
-                .cornerRadius(16)
+                AsyncImageView(image: article.image)
             }
 
         }
-//       .background(AppColor.backgroundSecondary)
         .padding(.vertical,16)
 
     }

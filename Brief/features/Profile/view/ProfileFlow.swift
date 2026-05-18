@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ProfileFlow: View {
-    @State private var router = AppRouter()
+    @Environment(AppRouter.self) private var router
     var body: some View {
+        @Bindable var router = router
         NavigationStack(path: $router.profile){
             Profile()
         }
@@ -21,5 +22,5 @@ struct ProfileFlow: View {
 }
 
 #Preview {
-    ProfileFlow()
+    ProfileFlow().environment(AppRouter())
 }
