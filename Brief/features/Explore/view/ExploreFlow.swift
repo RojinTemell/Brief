@@ -13,6 +13,12 @@ struct ExploreFlow: View {
         @Bindable var router = router
         NavigationStack(path: $router.explore){
             Explore()
+                .navigationDestination(for: AppRoute.self){ route in
+                    switch route{
+                    case .detail(let article):
+                        ArticleDetail(article: article)
+                    }
+                }
         }.tabItem(){
             Label("Explore",systemImage: "magnifyingglass.circle.fill")
         }

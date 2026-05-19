@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Bookmark: View {
+    @Environment(AppRouter.self) private var router
     var body: some View {
         ScrollView{
             VStack(alignment: .leading){
@@ -18,20 +19,11 @@ struct Bookmark: View {
                     ForEach(ArticleList.mockArticle.indices, id: \.self) { index in
                         let item = ArticleList.mockArticle[index]
 
-                        HStack {
-                            AsyncImageView(image: item.image)
-                            VStack (alignment: .leading){
-                                HStack{
-                                    Text(item.source.name)
-                                    Spacer()
-                                    Text(item.publishedAt.timeAgo())
-                                }
-                                .foregroundColor(.textTertiary)
-
-                                Text(item.title)
-                                    .lineLimit(2)
+                        BookMarkCard(article: item)
+                            .onTapGesture {
+                                router.navigate(to: .detail(article: item))
                             }
-                        }.padding()
+
                     }
                     Spacer(minLength: 0)
                 }
@@ -46,5 +38,5 @@ struct Bookmark: View {
 }
 
 #Preview {
-    Bookmark()
+    Bookmark().environment(AppRouter())
 }

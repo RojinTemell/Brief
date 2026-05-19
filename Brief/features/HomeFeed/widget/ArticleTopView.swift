@@ -8,44 +8,61 @@
 import SwiftUI
 
 struct ArticleTopView: View {
-    
+    let article :Article
     var body: some View {
         VStack(alignment: .leading,spacing: 12) {
-            Image("topNew")
-                .resizable()
-                .scaledToFill()
-                .frame(height: 180)
-                .clipped()
-                .clipShape(
-                    .rect(
-                        topLeadingRadius: 16,
-                        bottomLeadingRadius: 0,
-                        bottomTrailingRadius: 0,
-                        topTrailingRadius: 16
+            AsyncImage(url: URL(string: article.image)) { image in
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(
+                        maxWidth:.infinity,
+                        maxHeight:  180
                     )
+                    .clipped()
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: 16,
+                            bottomLeadingRadius: 0,
+                            bottomTrailingRadius: 0,
+                            topTrailingRadius: 16
+                        )
+                    )
+            } placeholder: {
+                ProgressView()
+            }
+            .clipped()
+            .clipShape(
+                .rect(
+                    topLeadingRadius: 16,
+                    bottomLeadingRadius: 0,
+                    bottomTrailingRadius: 0,
+                    topTrailingRadius: 16
                 )
-
+            )
             HStack(){
-                Text("GLOBAL ECONOMICS")
+                Text(article.source.name.uppercased())
                 Text("•")
-                Text("12 Min Read")
+                Text("\(article.publishedAt.timeAgo())")
             }
             .padding(.horizontal,16)
             .font(AppTypography.caption)
             .foregroundColor(AppColor.textSecondary)
             VStack(alignment: .leading,spacing: 8){
-                Text("The Future of Decentralized Finance in Emerging Markets")
+                Text(article.title)
+                    .lineLimit(3)
                     .foregroundColor(AppColor.textPrimary)
                     .font(AppTypography.title1)
 
-                Text("An in-depth exploration of how digital currencies are reshaping the financial…")
+                Text(article.description)
+                    .lineLimit(2)
                     .foregroundColor(AppColor.textSecondary)
                     .font(AppTypography.bodyMedium)
             }
             .padding(.horizontal,16)
 
             HStack{
-                Text("The Daily Journal")
+                Text(article.source.name)
                     .foregroundColor(AppColor.textPrimary)
                     .fontWeight(.bold)
                     .font(AppTypography.caption)
@@ -65,5 +82,5 @@ struct ArticleTopView: View {
 }
 
 #Preview {
-    ArticleTopView()
+    ArticleTopView(article: ArticleList.mockArticle[0])
 }

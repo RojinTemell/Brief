@@ -14,7 +14,7 @@ struct HomeFlow: View {
         @Bindable var router = router
         NavigationStack(path: $router.home){
             HomeFeed()
-                .navigationDestination(for: HomeRoute.self){ route in
+                .navigationDestination(for: AppRoute.self){ route in
                     switch route{
                     case .detail(let article):
                         ArticleDetail(article: article)

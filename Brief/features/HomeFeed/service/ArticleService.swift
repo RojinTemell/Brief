@@ -35,7 +35,8 @@ final class ArticleService {
         guard let url = AppServiceUrl.search(query: query).url else {
             throw AppError.InvalidUrl
         }
-
+        
+        print(url)
         let (data,response) = try await URLSession.shared.data(for: URLRequest(url: url))
 
         guard let httpResponse = response as? HTTPURLResponse , httpResponse.statusCode == 200 else{
@@ -54,7 +55,7 @@ final class ArticleService {
         guard let url = AppServiceUrl.category(type: type).url else{
             throw  AppError.InvalidUrl
         }
-     print(url)
+        print(url)
         let (data, response) = try await URLSession.shared.data(for: URLRequest(url:url))
 
         guard let httpResponse = response as? HTTPURLResponse , httpResponse.statusCode == 200 else {

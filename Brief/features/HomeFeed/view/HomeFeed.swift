@@ -14,11 +14,10 @@ struct HomeFeed: View {
     var body: some View {
         ScrollView{
             VStack{
-                ArticleTopView()
+                ArticleTopView(article: viewmodel.topArticle)
                     .onTapGesture {
-                        router.navigateInHome(to: .detail(article: ArticleList.mockArticle[0]))
+                        router.navigate(to: .detail(article:viewmodel.topArticle ))
                     }
-
                 Spacer().frame(height: 24)
                 categorySection
                 articleListSection
@@ -26,6 +25,7 @@ struct HomeFeed: View {
         }
         .task  {
             await viewmodel.getTopHeadlines()
+            await viewmodel.category(category: viewmodel.selectedCategory)
         }
     }
 }
@@ -33,9 +33,7 @@ struct HomeFeed: View {
 
 private extension HomeFeed{
     var categorySection:some View {
-
         ScrollView(.horizontal, showsIndicators: false){
-
             LazyHStack(spacing: 12){
                 ForEach(CategoryList.mockCatgory, id: \.self){ item in
                     CategoryChip(
@@ -56,7 +54,7 @@ private extension HomeFeed{
             ForEach(viewmodel.articles){ item in
                 ArticleItemView(article: item)
                     .onTapGesture {
-                        router.navigateInHome(to: .detail(article: item))
+                        router.navigate(to: .detail(article: item))
                     }
             }
         }

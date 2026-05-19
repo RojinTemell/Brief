@@ -16,9 +16,15 @@ final class AppRouter {
     var bookmark            = NavigationPath()
     var profile             = NavigationPath()
 
-    func navigateInHome(to route: HomeRoute) {
-        home.append(route)
+    func navigate(to route: AppRoute) {
+        switch selectedTab {
+        case .home:     home.append(route)
+        case .explore:  explore.append(route)
+        case .bookmark: bookmark.append(route)
+        case .profile:  profile.append(route)
+        }
     }
+
 
 }
 
@@ -28,10 +34,8 @@ enum AppTab {
     case bookmark
     case profile
 }
-enum HomeRoute     : Hashable{
-    case detail(article:Article)
+enum AppRoute: Hashable {
+    case detail(article: Article)
+
 }
-enum ExploreRoute  : Hashable{}
-enum BookmarkRoute : Hashable{}
-enum ProfileRoute  : Hashable{}
 
