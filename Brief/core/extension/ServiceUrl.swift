@@ -11,6 +11,7 @@ enum AppServiceUrl{
     case topHeadlines(country: String, lang: String)
     case category(type: String)
     case custom(query: String, sort: String, fromDate: String)
+    
 
     private var baseUrl:String {
         return "https://gnews.io/api/v4"
@@ -25,14 +26,18 @@ enum AppServiceUrl{
         }
     }
 
-    private var apiKey: String {
-        return APIConfig.apiKey
+    private func apiKey() throws -> String {
+        try APIConfig.apiKey()
     }
 
+
     var url :URL?{
+        guard let apiKey = try? APIConfig.apiKey() else {
+            return nil
+        }
         var components = URLComponents(string: baseUrl + path)
         var queryItems:[URLQueryItem] = [
-            URLQueryItem(name: "apikey", value: apiKey),
+            URLQueryItem(name: "apikey", value:apiKey),
             URLQueryItem(name:  "max", value: "10")
         ]
 

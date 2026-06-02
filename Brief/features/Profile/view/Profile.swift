@@ -9,7 +9,27 @@ import SwiftUI
 
 struct Profile: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ScrollView{
+            VStack{
+                HStack{
+                    Text("Personal Information")
+                        .foregroundColor(AppColor.textPrimary)
+                        .font(AppTypography.headline)
+                        .fontWeight(.light)
+                    Spacer()
+                    Image(systemName: "chevron.right")
+                        .foregroundColor(AppColor.textTertiary)
+
+                }
+                .padding(.horizontal,12)
+                .frame(height: 80)
+                .border(AppColor.borderDefault)
+                .cornerRadius(8)
+                .background(AppColor.backgroundSecondary)
+
+            }
+            .padding()
+        }
     }
 }
 

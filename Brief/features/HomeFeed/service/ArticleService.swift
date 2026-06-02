@@ -8,7 +8,7 @@
 import SwiftUI
 import Observation
 
-final class ArticleService {
+final class ArticleService : ArticleServiceProtocol{
     static  let shared = ArticleService()
     func getTopHeadlines()async throws ->[Article]{
         guard let url = AppServiceUrl.topHeadlines(country: "tr",lang:"tr").url else {

@@ -12,5 +12,6 @@ enum AppError:Error{
     case InvalidData
     case InvalidUrl
     case unableToComplete
+    case missingAPIKey
 }
 
